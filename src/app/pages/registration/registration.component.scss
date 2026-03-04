@@ -1,0 +1,127 @@
+
+:host {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #181a20 0%, #1a0033 100%);
+  padding: 20px;
+}
+
+.column-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.registration-form-container {
+  justify-content: center;
+  align-items: center;
+  align-content: flex-start;
+  gap: 16px;
+  position: relative;
+  padding: 32px;
+  height: max-content;
+  min-width: 400px;
+  max-width: 600px;
+  background: #23263a;
+  border-radius: 16px;
+  box-shadow: 0 0 32px #00fff799, 0 0 16px #ff00ea99;
+  border: 2px solid #00fff7;
+}
+
+.account-type-column {
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 8px;
+  position: relative;
+  min-width: 50px;
+  min-height: 50px;
+  flex-shrink: 0;
+  width: 100%;
+}
+
+
+.registration-form-title {
+  text-align: center;
+  height: max-content;
+  min-width: min-content;
+  color: #00fff7;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  font-family: 'Orbitron', 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  text-shadow: 0 0 8px #00fff7cc;
+}
+
+
+.account-type-label {
+  height: max-content;
+  min-width: min-content;
+  font-weight: 600;
+  color: #ff00ea;
+  margin: 0;
+  text-shadow: 0 0 2px #ff00ea99;
+}
+
+.user-input {
+  height: max-content;
+  min-width: min-content;
+  width: 100%;
+}
+
+.user-input_1 {
+  width: 100%;
+  height: max-content;
+}
+
+.button-group {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.submit-button,
+.clear-button {
+  --ig-size: var(--ig-size-medium);
+  height: max-content;
+  flex: 1;
+}
+
+
+.submit-button {
+  background-color: #00fff7;
+  color: #181a20;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 0 8px #00fff7cc;
+  transition: background 0.2s, color 0.2s;
+  &:hover {
+    background-color: #ff00ea;
+    color: #fff;
+    box-shadow: 0 0 12px #ff00ea99;
+  }
+}
+
+.clear-button {
+  border-color: #ff00ea;
+  color: #ff00ea;
+  font-weight: 700;
+  border-radius: 8px;
+  background: transparent;
+  box-shadow: 0 0 8px #ff00ea99;
+  transition: background 0.2s, color 0.2s;
+  &:hover {
+    background-color: #23263a;
+    color: #00fff7;
+    box-shadow: 0 0 12px #00fff7cc;
+  }
+}
+
+igx-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

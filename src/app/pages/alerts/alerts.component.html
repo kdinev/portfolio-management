@@ -1,0 +1,71 @@
+<div class="alerts-container">
+  <div class="header-section">
+    <h1>Market Alerts & Signals</h1>
+    <button igxButton="contained" igxRipple="" (click)="markAllAsRead()">
+      <igx-icon>done_all</igx-icon>
+      Mark All as Read
+    </button>
+  </div>
+
+  <igx-card>
+    <igx-card-content>
+      @if (alerts$ | async; as alerts) {
+        <div class="alerts-list">
+          @if (alerts.length === 0) {
+            <div class="no-alerts">
+              <igx-icon>notifications_none</igx-icon>
+              <p>No alerts at this time</p>
+            </div>
+          }
+          @for (alert of alerts; track alert) {
+            <div
+              class="alert-item"
+              [ngClass]="[getSeverityClass(alert.severity), alert.isRead ? 'read' : 'unread']">
+              <div class="alert-icon-section">
+                <igx-icon [class]="getSeverityClass(alert.severity)">
+                  {{ getSeverityIcon(alert.severity) }}
+                </igx-icon>
+              </div>
+              <div class="alert-content">
+                <div class="alert-header">
+                  <h3>{{ alert.title }}</h3>
+                  <div class="igx-chip-group">
+                    <igx-chip [ngClass]="getSeverityClass(alert.severity)">
+                      {{ alert.severity | uppercase }}
+                    </igx-chip>
+                    <igx-chip>{{ alert.type }}</igx-chip>
+                  </div>
+                </div>
+                <p class="alert-message">{{ alert.message }}</p>
+                <div class="alert-footer">
+                  <div class="alert-meta">
+                    @if (alert.assetSymbol) {
+                      <span class="asset-symbol">
+                        <igx-icon>show_chart</igx-icon>
+                        {{ alert.assetSymbol }}
+                      </span>
+                    }
+                    <span class="timestamp">
+                      <igx-icon>schedule</igx-icon>
+                      {{ alert.timestamp | date:'medium' }}
+                    </span>
+                  </div>
+                  <div class="alert-actions">
+                    @if (!alert.isRead) {
+                      <button igxIconButton (click)="markAsRead(alert.id)" igxTooltip="Mark as read">
+                        <igx-icon>check</igx-icon>
+                      </button>
+                    }
+                    <button igxIconButton (click)="deleteAlert(alert.id)" igxTooltip="Delete">
+                      <igx-icon>delete</igx-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </igx-card-content>
+  </igx-card>
+</div>

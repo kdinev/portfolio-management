@@ -1,0 +1,53 @@
+
+@use "igniteui-angular/theming" as *;
+
+// Custom navbar theme
+$custom-navbar-theme: navbar-theme(
+  $dark-material-schema,
+  linear-gradient(90deg, #181a20 60%, #1a0033 100%),
+  #00fff7,
+  #00fff7,
+  $shadow: 0 2px 16px 0 #00fff7cc
+);
+
+// Custom flat-button theme for navbar
+$custom-flat-button-theme: flat-button-theme(
+  $schema: $dark-material-schema,
+  $foreground: #00fff7
+);
+
+// Custom flat-icon-button theme for navbar icons
+$custom-flat-icon-button-theme: flat-icon-button-theme(
+  $schema: $dark-material-schema,
+  $foreground: #ff00ea
+);
+
+igx-navbar {
+  @include tokens($custom-navbar-theme);
+  .igx-button--flat {
+    @include tokens($custom-flat-button-theme);
+    igx-icon {
+      @include tokens($custom-flat-icon-button-theme);
+    }
+  }
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  margin-left: 32px;
+}
+
+igx-badge {
+  background: #ff00ea;
+  color: #fff;
+  font-weight: bold;
+  margin-left: 4px;
+  box-shadow: 0 0 6px #ff00ea;
+}

@@ -1,0 +1,59 @@
+h1 {
+
+.portfolio-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: transparent;
+}
+
+h1 {
+  margin-bottom: 24px;
+  color: #00fff7;
+  font-family: 'Orbitron', 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  text-shadow: 0 0 8px #00fff7cc;
+}
+
+mat-card {
+  margin-bottom: 24px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin-top: 16px;
+}
+
+.assets-table {
+  width: 100%;
+  background: #23263a;
+  border-radius: 10px;
+  box-shadow: 0 0 16px #00fff733;
+
+  th {
+    font-weight: 600;
+    color: #00fff7;
+    background: #181a20;
+    text-shadow: 0 0 4px #00fff7cc;
+  }
+
+  td, th {
+    padding: 16px 12px;
+    border-bottom: 1px solid #ff00ea66;
+  }
+
+  tr:hover {
+    background-color: #1a0033;
+  }
+
+  .category-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    background-color: #ff00ea;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: 0 0 8px #ff00ea99;
+  }
+}
+}

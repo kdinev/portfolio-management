@@ -1,0 +1,131 @@
+body {
+  background: var(--ig-surface-500, 0 0% 100%);
+  color: var(--ig-surface-500-contrast, black);
+  font-family: var(--ig-font-family);
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body, h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+img, video {
+  height: auto;
+  max-width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* Nav Drawer — inline positioning */
+igc-nav-drawer {
+  position: relative;
+  flex-shrink: 0;
+}
+
+igc-nav-drawer::part(base) {
+  position: relative;
+  height: 100%;
+  width: 200px;
+  background: var(--app-sidebar-bg, #fafafb);
+  border-right: 1px solid var(--app-border-color, #e9ebf0);
+}
+
+igc-nav-drawer::part(main) {
+  width: 200px;
+}
+
+igc-nav-drawer-item {
+  --ig-nav-drawer-item-active-background: #eef2ff;
+  --ig-nav-drawer-item-active-color: #6366f1;
+  height: 36px;
+}
+
+igc-nav-drawer-item .material-icons {
+  font-family: 'Material Icons';
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+igc-nav-drawer-item span[slot="content"] {
+  font-size: 13px;
+  font-family: 'Arimo', sans-serif;
+}
+
+/* Tabs styling — takes remaining flex space since panels live inside */
+igc-tabs {
+  --indicator-color: #6366f1;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+igc-tab {
+  font-family: 'Arimo', sans-serif;
+  font-size: 13px;
+}
+
+igc-tab::part(tab-body) {
+  overflow-y: auto;
+}
+
+/* Card styling */
+igc-card {
+  --border-radius: 0px;
+  box-shadow: none;
+}
+
+igc-card-header {
+  padding: 21px 21px 0 21px;
+}
+
+igc-card-content {
+  padding: 0 21px 21px 21px;
+}
+
+/* Chart sizing — REQUIRED for IgrCategoryChart to render */
+.igr-category-chart {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Chart gradient colors */
+igc-category-chart {
+  --brushes: #6366f1, #8b5cf6;
+  --outlines: #6366f1, #8b5cf6;
+}
+
+/* Linear Progress */
+igc-linear-progress {
+  --track-color: #f0f0f3;
+  --indicator-color: #10b981;
+  height: 8px;
+}
+
+/* Icon button styling */
+igc-icon-button {
+  --foreground: var(--app-text-secondary, #71717a);
+}

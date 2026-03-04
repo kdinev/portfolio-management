@@ -1,0 +1,10 @@
+{
+  "chat.mcp.serverSampling": {
+    "test/.vscode/mcp.json: igniteui-theming": {
+      "allowedModels": [
+        "copilot/gpt-4.1",
+        "copilot/auto"
+      ]
+    }
+  }
+}

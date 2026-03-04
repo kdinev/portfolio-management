@@ -1,0 +1,88 @@
+<div class="column-layout registration-form-container">
+  <h4 class="registration-form-title">
+    Create an Account
+  </h4>
+  <igx-input-group type="border" class="user-input">
+    <input type="text" [(ngModel)]="fullName" placeholder="Enter your full name" required="true" igxInput #fullNameInput />
+    <label igxLabel>Full Name</label>
+    @if (fullNameInput.validity.valueMissing) {
+      <igx-hint>This field is required</igx-hint>
+    }
+  </igx-input-group>
+  <igx-input-group type="border" class="user-input">
+    <input type="email" [(ngModel)]="email" placeholder="Enter your email" required="true" igxInput #emailInput />
+    <label igxLabel>Email</label>
+    @if (emailInput.validity.valueMissing) {
+      <igx-hint>This field is required</igx-hint>
+    }
+    @if (emailInput.validity.typeMismatch) {
+      <igx-hint>Please enter a valid email address</igx-hint>
+    }
+  </igx-input-group>
+  <igx-input-group type="border" class="user-input">
+    <input type="password" [(ngModel)]="password" placeholder="Enter your password" required="true" minlength="8" igxInput #passwordInput />
+    <label igxLabel>Password</label>
+    @if (passwordInput.validity.valueMissing) {
+      <igx-hint>This field is required</igx-hint>
+    }
+    @if (passwordInput.validity.tooShort) {
+      <igx-hint>Password must be at least 8 characters</igx-hint>
+    }
+  </igx-input-group>
+  <igx-input-group type="border" class="user-input">
+    <input type="password" [(ngModel)]="confirmPassword" placeholder="Confirm your password" required="true" igxInput #confirmPasswordInput />
+    <label igxLabel>Confirm Password</label>
+    @if (confirmPasswordInput.validity.valueMissing) {
+      <igx-hint>This field is required</igx-hint>
+    }
+    @if (password && confirmPassword && password !== confirmPassword) {
+      <igx-hint>Passwords do not match</igx-hint>
+    }
+  </igx-input-group>
+  <igx-input-group type="border" class="user-input">
+    <input type="tel" [(ngModel)]="phoneNumber" placeholder="Enter your phone number" igxInput />
+    <label igxLabel>Phone Number</label>
+  </igx-input-group>
+  <igx-select type="border" placeholder="Select your experience level" [(ngModel)]="experienceLevel" required="true" class="user-input">
+    <igx-select-item value="beginner">
+      Beginner
+    </igx-select-item>
+    <igx-select-item value="intermediate">
+      Intermediate
+    </igx-select-item>
+    <igx-select-item value="advanced">
+      Advanced
+    </igx-select-item>
+    <igx-select-item value="professional">
+      Professional
+    </igx-select-item>
+    <label igxLabel>Experience Level</label>
+  </igx-select>
+  <div class="column-layout account-type-column">
+    <p class="account-type-label">
+      Account Type:
+    </p>
+    <igx-radio-group [(ngModel)]="accountType" class="user-input_1">
+      <igx-radio [value]="'individual'" required="true">
+        Individual
+      </igx-radio>
+      <igx-radio [value]="'corporate'">
+        Corporate
+      </igx-radio>
+      <igx-radio [value]="'institutional'">
+        Institutional
+      </igx-radio>
+    </igx-radio-group>
+  </div>
+  <igx-checkbox [(ngModel)]="acceptTerms" labelPosition="after" required="true" class="user-input_1">
+    I agree to the Terms and Conditions
+  </igx-checkbox>
+  <div class="button-group">
+    <button igxButton="contained" type="button" class="submit-button" (click)="onSubmit()">
+      Register
+    </button>
+    <button igxButton="outlined" type="button" class="clear-button" (click)="onClear()">
+      Clear
+    </button>
+  </div>
+</div>

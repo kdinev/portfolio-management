@@ -1,0 +1,146 @@
+<div class="analytics-container">
+  <h1>Portfolio Analytics</h1>
+
+
+  <div class="analytics-cards-grid">
+    @if (portfolio$ | async; as portfolio) {
+      <igx-card class="summary-card">
+        <igx-card-header>
+          <div class="igx-card-title">Portfolio Summary</div>
+        </igx-card-header>
+        <igx-card-content>
+          <div class="summary-grid">
+            <div class="summary-item">
+              <div class="summary-label">Total Value</div>
+              <div class="summary-value">{{ formatCurrency(portfolio.totalValue) }}</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">Total Cost</div>
+              <div class="summary-value">{{ formatCurrency(portfolio.totalCost) }}</div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">Profit/Loss</div>
+              <div class="summary-value" [ngClass]="getChangeClass(portfolio.profitLoss)">
+                {{ formatCurrency(portfolio.profitLoss) }}
+              </div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-label">Return %</div>
+              <div class="summary-value" [ngClass]="getChangeClass(portfolio.profitLossPercentage)">
+                {{ formatPercent(portfolio.profitLossPercentage) }}
+              </div>
+            </div>
+          </div>
+        </igx-card-content>
+      </igx-card>
+    }
+    <igx-card class="analytics-card">
+      <igx-card-header>
+        <div class="igx-card-title">
+          <igx-icon>pie_chart</igx-icon>
+          Asset Category Performance
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <div class="category-analytics">
+          @for (category of categoryPerformance$ | async; track category) {
+            <div class="category-row">
+              <div class="category-info">
+                <div class="category-name">{{ category.category }}</div>
+                <div class="category-detail">{{ category.assetCount }} asset(s)</div>
+              </div>
+              <div class="category-allocation">
+                <igx-slider
+                  [minValue]="0"
+                  [maxValue]="100"
+                  [value]="category.allocation"
+                  [step]="0.01"
+                  [disabled]="true"
+                  style="height: 32px; border-radius: 16px;"
+                  aria-label="Allocation Slider Progress Bar">
+                </igx-slider>
+                <span class="allocation-text">{{ category.allocation.toFixed(1) }}%</span>
+              </div>
+              <div class="category-metrics">
+                <div class="metric">
+                  <span class="metric-label">Value:</span>
+                  <span class="metric-value">{{ formatCurrency(category.totalValue) }}</span>
+                </div>
+                <div class="metric">
+                  <span class="metric-label">P/L:</span>
+                  <span class="metric-value" [ngClass]="getChangeClass(category.profitLoss)">
+                    {{ formatCurrency(category.profitLoss) }}
+                    ({{ formatPercent(category.profitLossPercentage) }})
+                  </span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </igx-card-content>
+    </igx-card>
+  </div>
+
+  <!-- Top and Bottom Performers -->
+  <div class="performers-section">
+    <igx-card class="performers-card">
+      <igx-card-header>
+        <div class="igx-card-title">
+          <igx-icon class="positive">trending_up</igx-icon>
+          Top 10 Performers
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <div class="performers-list">
+          @for (asset of topPerformers$ | async; track asset; let i = $index) {
+            <div class="performer-row">
+              <div class="rank">{{ i + 1 }}</div>
+              <div class="asset-info">
+                <div class="asset-symbol">{{ asset.symbol }}</div>
+                <div class="asset-name">{{ asset.name }}</div>
+              </div>
+              <div class="performance">
+                <div class="performance-value positive">
+                  {{ formatPercent(asset.profitLossPercentage) }}
+                </div>
+                <div class="performance-amount positive">
+                  {{ formatCurrency(asset.profitLoss) }}
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </igx-card-content>
+    </igx-card>
+
+    <igx-card class="performers-card">
+      <igx-card-header>
+        <div class="igx-card-title">
+          <igx-icon class="negative">trending_down</igx-icon>
+          Bottom 10 Performers
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <div class="performers-list">
+          @for (asset of bottomPerformers$ | async; track asset; let i = $index) {
+            <div class="performer-row">
+              <div class="rank">{{ i + 1 }}</div>
+              <div class="asset-info">
+                <div class="asset-symbol">{{ asset.symbol }}</div>
+                <div class="asset-name">{{ asset.name }}</div>
+              </div>
+              <div class="performance">
+                <div class="performance-value" [ngClass]="getChangeClass(asset.profitLossPercentage)">
+                  {{ formatPercent(asset.profitLossPercentage) }}
+                </div>
+                <div class="performance-amount" [ngClass]="getChangeClass(asset.profitLoss)">
+                  {{ formatCurrency(asset.profitLoss) }}
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </igx-card-content>
+    </igx-card>
+  </div>
+</div>

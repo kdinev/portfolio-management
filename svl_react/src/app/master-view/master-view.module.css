@@ -1,0 +1,377 @@
+.row-layout {
+  display: flex;
+}
+
+.master-view-container {
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: flex-start;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background: var(--app-sidebar-bg);
+  border-right: 1px solid var(--app-border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 12px 16px;
+}
+
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-text {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--app-text-primary);
+}
+
+.sidebar-actions {
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.create-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border: none;
+  background: none;
+  font-family: 'Arimo', sans-serif;
+  font-size: 13px;
+  color: var(--app-text-primary);
+  cursor: pointer;
+}
+
+.create-btn:hover {
+  background: var(--app-active-bg);
+  border-radius: 4px;
+}
+
+.search-row {
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.nav-drawer {
+  flex: none;
+}
+
+.more-link {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--app-text-secondary);
+  cursor: pointer;
+}
+
+.workspaces-section {
+  padding: 8px 12px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.workspaces-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--app-text-secondary);
+  letter-spacing: 0.5px;
+  padding: 8px 0;
+}
+
+.workspace-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--app-text-primary);
+}
+
+.workspace-item:hover {
+  background: var(--app-active-bg);
+}
+
+.workspace-item-expanded {
+  background: #f0f0f3;
+}
+
+.workspace-avatar-circle {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.workspace-name {
+  font-size: 13px;
+  color: var(--app-text-primary);
+}
+
+.workspace-projects {
+  padding-left: 36px;
+}
+
+.project-item {
+  padding: 4px 8px;
+  font-size: 12px;
+  color: var(--app-text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.project-item:hover {
+  background: var(--app-active-bg);
+}
+
+.project-item-active {
+  color: var(--app-primary);
+  background: var(--app-active-bg);
+}
+
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 12px;
+  border-top: 1px solid var(--app-border-color);
+  margin-top: auto;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+}
+
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--app-border-color);
+  min-height: 48px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--app-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.breadcrumb-sep {
+  color: var(--app-text-muted);
+  font-size: 13px;
+}
+
+.header-title {
+  font-size: 13px;
+  color: var(--app-text-primary);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.user-avatar-circle {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  background: #f97316;
+  margin-left: 4px;
+}
+
+.header-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  font-family: 'Arimo', sans-serif;
+}
+
+.tab-nav {
+  border-bottom: 1px solid var(--app-border-color);
+}
+
+.content-area {
+  background: var(--app-surface-bg);
+  padding: 0;
+  min-height: 100%;
+}
+
+.overview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #ffffff;
+}
+
+.overview-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--app-text-primary);
+  font-family: 'Arimo', sans-serif;
+  line-height: 1.4;
+}
+
+.edit-btn {
+  --foreground: #52525b;
+  font-size: 13px;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px 24px;
+}
+
+.status-card {
+  --border-radius: 8px;
+  --background: #ffffff;
+  border: 1px solid var(--app-border-color);
+  border-radius: 8px;
+  position: relative;
+  min-height: 280px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--app-text-primary);
+}
+
+.status-icon-container {
+  position: absolute;
+  top: 21px;
+  right: 21px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-count {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--app-text-primary);
+  margin-top: 16px;
+}
+
+.card-description {
+  font-size: 14px;
+  color: var(--app-text-secondary);
+  margin-top: 4px;
+}
+
+.chart-card {
+  --border-radius: 0px;
+  --background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.chart-wrapper {
+  width: 100%;
+  height: 150px;
+  min-height: 150px;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.chart-label {
+  font-size: 12px;
+  color: var(--app-text-secondary);
+}
+
+.chart-trend {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.trend-icon {
+  color: var(--app-success);
+  --size: 18px;
+}
+
+.trend-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--app-success);
+}
+
+.members-card {
+  --border-radius: 0px;
+  --background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.progress-wrapper {
+  padding-top: 16px;
+}
+
+.members-progress {
+  --track-color: #f0f0f3;
+  --indicator-color: var(--app-success);
+  width: 100%;
+}

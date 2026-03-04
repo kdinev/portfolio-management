@@ -1,0 +1,142 @@
+<div class="dashboard-container">
+  <h1>Portfolio Dashboard</h1>
+
+  <!-- Portfolio Overview -->
+  @if (portfolio$ | async; as portfolio) {
+    <div class="overview-section">
+      <igx-card class="overview-card">
+        <igx-card-header>
+          <igx-icon igxCardAvatar>account_balance_wallet</igx-icon>
+          <div class="igx-card-title">Total Portfolio Value</div>
+        </igx-card-header>
+        <igx-card-content>
+          <div class="metric-value">{{ formatCurrency(portfolio.totalValue) }}</div>
+          <div class="metric-detail" [ngClass]="getChangeClass(portfolio.profitLoss)">
+            {{ formatCurrency(portfolio.profitLoss) }} ({{ formatPercent(portfolio.profitLossPercentage) }})
+          </div>
+        </igx-card-content>
+      </igx-card>
+      <igx-card class="overview-card">
+        <igx-card-header>
+          <igx-icon igxCardAvatar>trending_up</igx-icon>
+          <div class="igx-card-title">Total Assets</div>
+        </igx-card-header>
+        <igx-card-content>
+          <div class="metric-value">{{ portfolio.assets.length }}</div>
+          <div class="metric-detail neutral">Across {{ (categoryPerformance$ | async)?.length || 0 }} categories</div>
+        </igx-card-content>
+      </igx-card>
+      <igx-card class="overview-card">
+        <igx-card-header>
+          <igx-icon igxCardAvatar>attach_money</igx-icon>
+          <div class="igx-card-title">Total Cost Basis</div>
+        </igx-card-header>
+        <igx-card-content>
+          <div class="metric-value">{{ formatCurrency(portfolio.totalCost) }}</div>
+          <div class="metric-detail neutral">Initial investment</div>
+        </igx-card-content>
+      </igx-card>
+      <igx-card class="overview-card">
+        <igx-card-header>
+          <igx-icon igxCardAvatar>notifications_active</igx-icon>
+          <div class="igx-card-title">Active Alerts</div>
+        </igx-card-header>
+        <igx-card-content>
+          <div class="metric-value">{{ (alerts$ | async)?.length || 0 }}</div>
+          <div class="metric-detail neutral">Market signals</div>
+        </igx-card-content>
+      </igx-card>
+    </div>
+  }
+
+  <!-- Category Performance -->
+  <igx-card class="section-card">
+    <igx-card-header>
+      <div class="igx-card-title">Category Performance</div>
+    </igx-card-header>
+    <igx-card-content>
+      <div class="category-grid">
+        @for (category of categoryPerformance$ | async; track category) {
+          <igx-card class="category-item neon-card">
+            <igx-card-header>
+              <span class="category-name">{{ category.category }}</span>
+              <span class="category-allocation">{{ category.allocation.toFixed(1) }}%</span>
+            </igx-card-header>
+            <igx-card-content>
+              <div class="category-value">{{ formatCurrency(category.totalValue) }}</div>
+              <div class="category-change" [ngClass]="getChangeClass(category.profitLoss)">
+                {{ formatCurrency(category.profitLoss) }} ({{ formatPercent(category.profitLossPercentage) }})
+              </div>
+              <div class="category-assets">{{ category.assetCount }} asset(s)</div>
+            </igx-card-content>
+          </igx-card>
+        }
+      </div>
+    </igx-card-content>
+  </igx-card>
+
+  <!-- Performance Summary -->
+  <div class="performance-section">
+    <igx-card class="performance-card">
+      <igx-card-header>
+        <div class="igx-card-title">
+          <igx-icon>trending_up</igx-icon>
+          Top Performers
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <igx-list>
+          <igx-list-item *ngFor="let performer of topPerformers">
+            <div class="performer-symbol">{{ performer.symbol }}</div>
+            <div class="performer-name">{{ performer.name }}</div>
+            <div class="performer-change positive">+{{ performer.change }}%</div>
+          </igx-list-item>
+        </igx-list>
+      </igx-card-content>
+    </igx-card>
+
+    <igx-card class="performance-card">
+      <igx-card-header>
+        <div class="igx-card-title">
+          <igx-icon>trending_down</igx-icon>
+          Bottom Performers
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <igx-list>
+          <igx-list-item *ngFor="let performer of bottomPerformers">
+            <div class="performer-symbol">{{ performer.symbol }}</div>
+            <div class="performer-name">{{ performer.name }}</div>
+            <div class="performer-change negative">{{ performer.change }}%</div>
+          </igx-list-item>
+        </igx-list>
+      </igx-card-content>
+    </igx-card>
+  </div>
+
+  <!-- Recent Alerts -->
+  <igx-card class="section-card">
+    <igx-card-header>
+      <div class="igx-card-title">Recent Market Alerts</div>
+    </igx-card-header>
+    <igx-card-content>
+      <igx-list class="alerts-list neon-list">
+        @for (alert of (alerts$ | async)?.slice(0, 5); track alert) {
+          <igx-list-item
+            class="alert-item"
+            [ngClass]="getSeverityClass(alert.severity)">
+            <igx-icon class="alert-icon">{{ alert.isRead ? 'notifications' : 'notifications_active' }}</igx-icon>
+            <div class="alert-content">
+              <div class="alert-title">{{ alert.title }}</div>
+              <div class="alert-message">{{ alert.message }}</div>
+              <div class="alert-meta">
+                <span>{{ alert.type }}</span>
+                <span>{{ alert.timestamp | date:'short' }}</span>
+              </div>
+            </div>
+          </igx-list-item>
+        }
+      </igx-list>
+    </igx-card-content>
+  </igx-card>
+</div>

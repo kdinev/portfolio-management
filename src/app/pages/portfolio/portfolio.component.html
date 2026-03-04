@@ -1,0 +1,29 @@
+<div class="portfolio-container">
+  <h1>Portfolio Assets</h1>
+
+  @if (portfolio$ | async; as portfolio) {
+    <igx-card>
+      <igx-card-header>
+        <div class="igx-card-title">Asset Holdings</div>
+        <div class="igx-card-subtitle">
+          {{ portfolio.assets.length }} total assets | Last updated: {{ portfolio.lastUpdated | date:'medium' }}
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <div class="table-container">
+          <igx-grid [data]="portfolio.assets" [autoGenerate]="false" class="assets-table" [height]="'600px'">
+            <igx-column field="symbol" header="Symbol"></igx-column>
+            <igx-column field="name" header="Name"></igx-column>
+            <igx-column field="category" header="Category"></igx-column>
+            <igx-column field="quantity" header="Quantity"></igx-column>
+            <igx-column field="purchasePrice" header="Purchase Price" [formatter]="formatCurrency"></igx-column>
+            <igx-column field="currentPrice" header="Current Price" [formatter]="formatCurrency"></igx-column>
+            <igx-column field="value" header="Total Value" [formatter]="calculateValue"></igx-column>
+            <igx-column field="profitLoss" header="Profit/Loss" [formatter]="calculateProfitLoss"></igx-column>
+            <igx-column field="profitLossPercent" header="Change %" [formatter]="calculateProfitLossPercent"></igx-column>
+          </igx-grid>
+        </div>
+      </igx-card-content>
+    </igx-card>
+  }
+</div>
