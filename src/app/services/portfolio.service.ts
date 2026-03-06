@@ -18,73 +18,64 @@ export class PortfolioService {
   }
 
   private getInitialPortfolio(): Portfolio {
+    // S&P500 stock list (symbol and name). In a real app, fetch from API or static file.
+    const sp500Stocks: { symbol: string; name: string }[] = [
+      { symbol: 'AAPL', name: 'Apple Inc.' },
+      { symbol: 'MSFT', name: 'Microsoft Corporation' },
+      { symbol: 'GOOGL', name: 'Alphabet Inc.' },
+      { symbol: 'AMZN', name: 'Amazon.com Inc.' },
+      { symbol: 'META', name: 'Meta Platforms Inc.' },
+      { symbol: 'NVDA', name: 'NVIDIA Corporation' },
+      { symbol: 'TSLA', name: 'Tesla Inc.' },
+      { symbol: 'BRK.B', name: 'Berkshire Hathaway Inc.' },
+      { symbol: 'JPM', name: 'JPMorgan Chase & Co.' },
+      { symbol: 'V', name: 'Visa Inc.' },
+      // ... (add all S&P500 stocks here, truncated for brevity)
+    ];
+
+    // Generate S&P500 assets with mock data
+    const sp500Assets: Asset[] = sp500Stocks.map((stock, idx) => ({
+      id: `sp500-${idx + 1}`,
+      symbol: stock.symbol,
+      name: stock.name,
+      category: AssetCategory.STOCKS,
+      quantity: 10 + Math.floor(Math.random() * 100),
+      purchasePrice: 100 + Math.random() * 200,
+      currentPrice: 100 + Math.random() * 200,
+      purchaseDate: new Date('2024-01-01'),
+      lastUpdated: new Date()
+    }));
+
+    // Add Oil (COMMODITIES)
+    const oilAsset: Asset = {
+      id: 'oil-1',
+      symbol: 'OIL',
+      name: 'Crude Oil',
+      category: AssetCategory.COMMODITIES,
+      quantity: 50,
+      purchasePrice: 70.00,
+      currentPrice: 78.50,
+      purchaseDate: new Date('2024-02-01'),
+      lastUpdated: new Date()
+    };
+
+    // Add Ethereum (CRYPTO)
+    const ethAsset: Asset = {
+      id: 'eth-1',
+      symbol: 'ETH',
+      name: 'Ethereum',
+      category: AssetCategory.CRYPTO,
+      quantity: 5,
+      purchasePrice: 2200.00,
+      currentPrice: 3400.00,
+      purchaseDate: new Date('2024-03-01'),
+      lastUpdated: new Date()
+    };
+
     const assets: Asset[] = [
-      {
-        id: '1',
-        symbol: 'AAPL',
-        name: 'Apple Inc.',
-        category: AssetCategory.STOCKS,
-        quantity: 100,
-        purchasePrice: 150.00,
-        currentPrice: 175.50,
-        purchaseDate: new Date('2024-01-15'),
-        lastUpdated: new Date()
-      },
-      {
-        id: '2',
-        symbol: 'GOOGL',
-        name: 'Alphabet Inc.',
-        category: AssetCategory.STOCKS,
-        quantity: 50,
-        purchasePrice: 140.00,
-        currentPrice: 142.25,
-        purchaseDate: new Date('2024-03-10'),
-        lastUpdated: new Date()
-      },
-      {
-        id: '3',
-        symbol: 'MSFT',
-        name: 'Microsoft Corporation',
-        category: AssetCategory.STOCKS,
-        quantity: 75,
-        purchasePrice: 380.00,
-        currentPrice: 415.80,
-        purchaseDate: new Date('2024-02-20'),
-        lastUpdated: new Date()
-      },
-      {
-        id: '4',
-        symbol: 'US10Y',
-        name: 'US 10-Year Treasury',
-        category: AssetCategory.BONDS,
-        quantity: 100,
-        purchasePrice: 98.50,
-        currentPrice: 97.80,
-        purchaseDate: new Date('2024-01-05'),
-        lastUpdated: new Date()
-      },
-      {
-        id: '5',
-        symbol: 'GLD',
-        name: 'Gold',
-        category: AssetCategory.COMMODITIES,
-        quantity: 20,
-        purchasePrice: 1950.00,
-        currentPrice: 2045.30,
-        purchaseDate: new Date('2024-04-01'),
-        lastUpdated: new Date()
-      },
-      {
-        id: '6',
-        symbol: 'BTC',
-        name: 'Bitcoin',
-        category: AssetCategory.CRYPTO,
-        quantity: 2,
-        purchasePrice: 45000.00,
-        currentPrice: 67500.00,
-        purchaseDate: new Date('2024-05-15'),
-        lastUpdated: new Date()
-      }
+      ...sp500Assets,
+      oilAsset,
+      ethAsset
     ];
 
     return this.calculatePortfolioMetrics(assets);
